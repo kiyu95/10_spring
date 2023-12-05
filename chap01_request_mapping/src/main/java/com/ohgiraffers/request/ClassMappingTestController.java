@@ -35,7 +35,7 @@ public class ClassMappingTestController {
     // 만약 동일하지 않으면 @PathVariavble("이름)을 설정해주어야 한다.
     // 이는 rest형 웹 서비스를 설계할 때 유용하게 사용된다.
 
-    // 인털리제이의 builder 설정을 Interllij로 했을 경우에는 @PathVariable에 이름을 지정해주지 않으면 찾지 못한다.
+    // 인텔리제이의 builder 설정을 Interllij로 했을 경우에는 @PathVariable에 이름을 지정해주지 않으면 찾지 못한다.
     @GetMapping("/detail/{orderNo}") // {} 사이에 변수를 넣어서 URL을 매핑
     public String selectOrderDetail(Model model, @PathVariable("orderNo") int orderNo){ // method 인자로 @PathVariable을 id로 받아야 한다.
 
