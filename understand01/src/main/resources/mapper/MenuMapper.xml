@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ohgiraffers.pos.menu.model.MenuDAO">
+
+    <resultMap id="menuResult" type="com.ohgiraffers.pos.menu.dto.MenuDTO">
+        <id property="code" column="MENU_CODE"/>
+        <result property="name" column="MENU_NAME"/>
+        <result property="price" column="MENU_PRICE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="status" column="ORDERABLE_STATUS"/>
+    </resultMap>
+
+    <select id="selectAllMenu" resultMap="menuResult">
+        SELECT
+            *
+          FROM TBL_MENU
+         WHERE ORDERABLE_STATUS = 'Y'
+    </select>
+
+    <insert id="registMenu" parameterType="com.ohgiraffers.pos.menu.dto.MenuInsertDTO">
+        INSERT INTO TBL_MENU(
+            MENU_CODE,
+            MENU_NAME,
+            MENU_PRICE,
+            CATEGORY_CODE,
+            ORDERABLE_STATUS
+        ) VALUE(
+            NULL,
+            #{name},
+            #{price},
+            #{categoryCode},
+            'Y'
+        )
+    </insert>
+
+    <update id="updatePrice" parameterType="com.ohgiraffers.pos.menu.dto.MenuUpdateDTO">
+        UPDATE TBL_MENU
+           SET MENU_PRICE = #{price}
+         WHERE MENU_NAME = #{name}
+    </update>
+
+    <delete id="deleteMenu" parameterType="com.ohgiraffers.pos.menu.dto.MenuDeleteDTO">
+        DELETE FROM TBL_MENU
+         WHERE MENU_NAME = #{name}
+    </delete>
+</mapper>
